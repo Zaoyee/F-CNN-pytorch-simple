@@ -5,7 +5,7 @@ import torch.nn as nn
 
 class fcn_16(nn.Module):
     def __init__(self, num_classes=21):
-        super(fcn, self).__init__()
+        super(fcn_16, self).__init__()
         resnet34 = models.resnet34(pretrained=True)
         self.layer1 = nn.Sequential(*list(resnet34.children())[:-4])
         self.layer2 = list(resnet34.children())[-4]
@@ -16,8 +16,8 @@ class fcn_16(nn.Module):
         self.conv3 = nn.Conv2d(128, num_classes, 1)
 
 
-        self.upsample_16x = nn.ConvTranspose2d(num_classes, num_classes, 4, 2, 1, bias=False)
-        self.upsample_16x.weight.data = self.bilinear_kernal(num_classes, num_classes, 4)
+        self.upsample_16x = nn.ConvTranspose2d(num_classes, num_classes, 32, 16, 8, bias=False)
+        self.upsample_16x.weight.data = self.bilinear_kernal(num_classes, num_classes, 32)
 
         self.upsample_2x = nn.ConvTranspose2d(num_classes, num_classes, 3, 2, 1, bias=False)
         self.upsample_2x.weight.data = self.bilinear_kernal(num_classes, num_classes, 3)

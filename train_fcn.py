@@ -8,8 +8,7 @@ import torch.nn.functional as F
 import acc_computer as acpt
 
 
-def train():
-    net = md.fcn().cuda()
+def train(net):
     criterion = nn.NLLLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=1e-2, weight_decay=1e-4)
 

@@ -16,7 +16,7 @@ class fcn_32(nn.Module):
         self.conv3 = nn.Conv2d(128, num_classes, 1)
 
 
-        self.upsample_32x = nn.ConvTranspose2d(num_classes, num_classes, 64, 32, 16, bias=False)
+        self.upsample_32x = nn.ConvTranspose2d(num_classes, num_classes, 64, 32, 24, bias=False)
         self.upsample_32x.weight.data = self.bilinear_kernal(num_classes, num_classes, 64)
 
         #self.unsmaple_32x = nn.ConvTranspose2d(num_classes, num_classes,  )
@@ -37,7 +37,6 @@ class fcn_32(nn.Module):
 
     def forward(self, x):
         # 1/8
-        print(x.shape)
         x = self.layer1(x)
 
         # 1/16
@@ -49,7 +48,6 @@ class fcn_32(nn.Module):
         cv3 = x
 
         cv3 = self.conv1(cv3)
-        print(cv3.shape)
-        out1 = self.unsample_32x(cv3)
+        out1 = self.upsample_32x(cv3)
 
         return out1[:,:,:,1:-1]
