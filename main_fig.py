@@ -2,7 +2,6 @@ import torch
 import matplotlib.pyplot as plt
 from torch.autograd import Variable
 import data_generator as dgtr
-import PIL.Image as Image
 import numpy as np
 import fcn_model_32s as fcn_32
 import fcn_model_16s as fcn_16
