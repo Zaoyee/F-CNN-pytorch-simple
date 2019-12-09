@@ -27,6 +27,13 @@ to remove all generated figures.
 
 type `make` in terminal if you have GNU MAKE installed properlly in OS
 
+if `make` is not available you can run
+
+```
+pip install -r requirements.txt
+python main_fig.py
+
+```
 ----
 
 The project aims to build F-CNN model in [pytorch](https://pytorch.org/).
